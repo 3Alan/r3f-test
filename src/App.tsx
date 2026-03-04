@@ -45,7 +45,7 @@ function App() {
           width: "100vw",
           height: "100vh",
           backgroundColor: "#282c34",
-          zIndex: -1,
+          // zIndex: -1,
         }}
       >
         <Suspense fallback={null}>
