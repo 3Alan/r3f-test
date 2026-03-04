@@ -1,10 +1,15 @@
 import { View } from "@react-three/drei";
 import Canvas from "./Canvas";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useMatches } from "react-router-dom";
+import { cn } from "./utils";
 
 export default function Layout() {
+  const matches = useMatches();
+  const lastPathname = matches[matches.length - 1]?.pathname;
+  const isBlankLayout = lastPathname?.includes("/blank-layout");
+
   return (
-    <>
+    <div className={cn("flex flex-col", !isBlankLayout && "h-[100vh]")}>
       <Canvas
         style={{
           position: "fixed",
@@ -13,7 +18,7 @@ export default function Layout() {
           width: "100vw",
           height: "100vh",
           backgroundColor: "#282c34",
-          // zIndex: -1,
+          zIndex: -1,
         }}
       >
         <View.Port />
@@ -23,6 +28,6 @@ export default function Layout() {
       <Link to="/scene">Scene</Link>
 
       <Outlet />
-    </>
+    </div>
   );
 }
