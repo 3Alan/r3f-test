@@ -10,7 +10,7 @@ import Canvas from "./Canvas";
 
 function Scene() {
   return (
-    <View style={{ width: 500, height: 500, border: "1px solid red" }}>
+    <View className="view">
       <OrthographicCamera position={[0, 0, 10]} makeDefault />
       <CameraControls makeDefault />
       <ambientLight intensity={0.3} />
