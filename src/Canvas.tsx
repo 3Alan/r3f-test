@@ -1,6 +1,7 @@
 import { Loader } from "@react-three/drei";
 import type { CanvasProps } from "@react-three/fiber";
 import { Canvas as BaseCanvas } from "@react-three/fiber";
+import { useDocumentVisibility } from "ahooks";
 import { memo, Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -16,6 +17,11 @@ const Canvas = (
   }
 ) => {
   const { children, share = true, ...restProps } = props;
+  const documentVisibility = useDocumentVisibility();
+
+  if (documentVisibility !== "visible") {
+    return null;
+  }
 
   // 为了在canvas层级使用useErrorBoundary
   const fallbackRender = ({ error }: { error: Error }) => {
