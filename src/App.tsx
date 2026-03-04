@@ -1,5 +1,4 @@
 import "./App.css";
-import { Canvas } from "@react-three/fiber";
 import {
   Box,
   CameraControls,
@@ -7,7 +6,7 @@ import {
   OrthographicCamera,
   View,
 } from "@react-three/drei";
-import { Suspense } from "react";
+import Canvas from "./Canvas";
 
 function Scene() {
   return (
@@ -33,11 +32,6 @@ function App() {
   return (
     <>
       <Canvas
-        shadows={false}
-        eventSource={document.getElementById("root")!}
-        onPointerDown={(e) => {
-          e.stopPropagation();
-        }}
         style={{
           position: "fixed",
           top: 0,
@@ -48,9 +42,7 @@ function App() {
           // zIndex: -1,
         }}
       >
-        <Suspense fallback={null}>
-          <View.Port />
-        </Suspense>
+        <View.Port />
       </Canvas>
 
       <Scene />
